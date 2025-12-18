@@ -1,3 +1,4 @@
+[中文](README-zh.md) | [English](README.md)
 # JFST
 Finite State Transducer 的Java实现
 
