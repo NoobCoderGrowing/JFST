@@ -1,0 +1,48 @@
+import javafx.util.Pair;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class usageExample {
+
+    public static String[] str2Array(String str){
+        int len = str.length();
+        String[] ret = new String[len];
+        for (int i = 0; i < len; i++) {
+            ret[i] =  String.valueOf(str.charAt(i));
+        }
+        return ret;
+    }
+
+    public static void main(String[] args) {
+        String[] examples = new String[]{"app", "apple", "applet", "aplet"};
+        long[] outputs = new long[]{10, -1, 8, -6};
+        // phrases must be sorted before add into FST
+        Arrays.sort(examples);
+        ArrayList<Pair<Long, String[]>> inputs = new ArrayList<>();
+        for (int i = 0; i < examples.length; i++){
+            String[] phrase = str2Array(examples[i]);
+            Pair<Long, String[]> entry = new Pair<>(outputs[i], phrase);
+            inputs.add(entry);
+        }
+
+        FST fst = new FST();
+        fst.build(inputs);
+        String[] example1 = str2Array("app");
+        String[] example2 = str2Array("et");
+
+        System.out.println(fst.fuzzySearchPrefix(example1));
+        System.out.println(fst.fuzzySearchSuffix(example2));
+
+        System.out.println(fst.search(example1));
+        System.out.println(fst.backSearch(example2));
+        System.out.println(fst.backSearch(example1));
+
+
+
+
+
+    }
+
+
+}
