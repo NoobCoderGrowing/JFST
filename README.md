@@ -2,7 +2,7 @@
 A Java implementation of Finite State Transducer
 
 ## Introduction to FST
-FST(Finite state transducer) is a data structure that facilitate string match and producing an output. It functions as a Map and allows reverse and wild card search, and uses much less memory to store entries than a common Map because of the sharing of prefix and suffix.
+FST(Finite state transducer) is a data structure that facilitates string match and produces an output. It functions as a Map and allows reverse and wild card search, and uses much less memory to store entries than a common Map because of the sharing of prefix and suffix.
 
 For theoretical and implementation details, please refer to this blog https://burntsushi.net/transducers/.
 
