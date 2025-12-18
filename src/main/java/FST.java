@@ -340,10 +340,4 @@ public class FST {
         nodeMap.clear();
     }
 
-
-    public static void main(String[] args) {
-
-    }
-
-
 }
