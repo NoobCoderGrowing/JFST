@@ -1,13 +1,12 @@
-[中文](README-zh.md) | [English](README.md)
 # JFST
-A Java implementation of Finite State Transducer
+Finite State Transducer 的Java实现
 
 ## Introduction to FST
-FST(Finite state transducer) is a data structure that facilitates string match and produces an output. It functions as a Map and allows reverse and wild card search, and uses much less memory to store entries than a common Map because of the sharing of prefix and suffix.
+FST(Finite state transducer) 是一种用于字符串匹配的数据结构，并且在字符串匹配的同时产生一个输出。它的作用类似于一个Map，并且支持倒序搜索和通配符搜索。FST相较于Map而言使用的内存大大减少，因为这种数据结构在存储字符串的过程中支持前缀和后缀的共享。
 
-For theoretical and implementation details, please refer to this blog https://burntsushi.net/transducers/.
+如果想要了解更多的理论和实现细节，请参考这篇博客 https://burntsushi.net/transducers/。
 
-## Usage example
+## 使用案例
 ```
 public static String[] str2Array(String str){
         int len = str.length();
@@ -21,11 +20,11 @@ public static String[] str2Array(String str){
 public static void main(String[] args) {
     String[] examples = new String[]{"app", "apple", "applet", "aplet"};
     long[] outputs = new long[]{10, -1, 8, -6};
-    // phrases must be sorted before adding into FST
+    // 短语在加入FST前必须排序
     Arrays.sort(examples);
     ArrayList<Pair<Long, String[]>> inputs = new ArrayList<>();
     for (int i = 0; i < examples.length; i++){
-        //the reason why an entry must be a string list is a node in FST does not have to be a character
+        //在FST中一个节点不一定非要是一个字符
         String[] phrase = str2Array(examples[i]);
         Pair<Long, String[]> entry = new Pair<>(outputs[i], phrase);
         inputs.add(entry);
@@ -42,7 +41,7 @@ public static void main(String[] args) {
     System.out.println(fst.backSearch(example1));
 }
 
-//print result 
+//打印结果 
 [-1=[a, p, p], 8=[a, p, p, l, e], -6=[a, p, p, l, e, t]]
 [10=[a, p, l, e, t], -6=[a, p, p, l, e, t]]
 -1=[a, p, p]
@@ -50,9 +49,9 @@ public static void main(String[] args) {
 -1=[a, p, p]
 ```
 
-## Environment configuration
+## 环境配置
 * jdk 1.8+
 * maven 3.8.1+
 
-## License
+## 许可证协议
 Apache-2.0
