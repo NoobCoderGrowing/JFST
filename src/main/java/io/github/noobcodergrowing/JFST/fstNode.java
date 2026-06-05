@@ -1,3 +1,4 @@
+package io.github.noobcodergrowing.JFST;
 
 import com.google.common.collect.HashMultimap;
 

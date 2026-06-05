@@ -1,3 +1,5 @@
+package io.github.noobcodergrowing.JFST;
+
 public class Triple <A,B,C>{
 
     private A first;

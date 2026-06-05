@@ -1,3 +1,5 @@
+package io.github.noobcodergrowing.JFST;
+
 public class fstPair<t,v> {
 
     private t key;

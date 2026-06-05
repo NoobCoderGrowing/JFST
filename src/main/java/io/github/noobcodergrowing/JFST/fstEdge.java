@@ -1,3 +1,5 @@
+package io.github.noobcodergrowing.JFST;
+
 public class fstEdge {
 
     private long output;

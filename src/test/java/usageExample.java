@@ -1,3 +1,6 @@
+import io.github.noobcodergrowing.JFST.FST;
+import io.github.noobcodergrowing.JFST.fstPair;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 

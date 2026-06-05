@@ -27,6 +27,12 @@ FST（Finite state transducer）是一种用于字符串匹配的数据结构，
 ### 使用案例
 
 ```
+import io.github.noobcodergrowing.JFST.FST;
+import io.github.noobcodergrowing.JFST.fstPair;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public static String[] str2Array(String str){
         int len = str.length();
         String[] ret = new String[len];
@@ -140,6 +146,12 @@ import maven dependency
 ### Usage example
 
 ```
+import io.github.noobcodergrowing.JFST.FST;
+import io.github.noobcodergrowing.JFST.fstPair;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public static String[] str2Array(String str){
         int len = str.length();
         String[] ret = new String[len];
