@@ -162,25 +162,31 @@ flowchart LR
     ROOT(["root"])
     A["a"]
     P1["p"]
-    P2["p"]
     L1["l"]
     E1["e"]
+    T1["t"]
+    P2["p"]
     L2["l"]
     E2["e"]
-    T["t"]
+    T2["t"]
     END(["end"])
+
     ROOT -->|"10"| A
     A -->|"0"| P1
-    P1 -->|"0"| P2
-    P1 -->|"-16"| L2
-    P2 -->|"-11"| L1
-    P2 -->|"0"| END
+    P1 -->|"0"| L1
     L1 -->|"0"| E1
-    E1 -->|"0"| END
-    E1 -->|"9"| T
+    E1 -->|"0"| T1
+    T1 -->|"0"| END
+    P1 -->|"-11"| P2
+    P2 -->|"0"| END
+    P2 -->|"9"| L2
     L2 -->|"0"| E2
-    E2 -->|"0"| T
-    T -->|"0"| END
+    E2 -->|"0"| END
+    E2 -->|"-14"| T2
+    T2 -->|"0"| END
+
+    style ROOT fill:#e8f4fd
+    style END fill:#fde8e8
 ```
 
 ### Environment configuration
