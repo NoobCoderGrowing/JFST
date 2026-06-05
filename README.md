@@ -23,11 +23,11 @@ public static void main(String[] args) {
     long[] outputs = new long[]{10, -1, 8, -6};
     // phrases must be sorted before adding into FST
     Arrays.sort(examples);
-    ArrayList<Pair<Long, String[]>> inputs = new ArrayList<>();
+    ArrayList<fstPair<Long, String[]>> inputs = new ArrayList<>();
     for (int i = 0; i < examples.length; i++){
         //the reason why an entry must be a string list is a node in FST does not have to be a character
         String[] phrase = str2Array(examples[i]);
-        Pair<Long, String[]> entry = new Pair<>(outputs[i], phrase);
+        fstPair<Long, String[]> entry = new fstPair<>(outputs[i], phrase);
         inputs.add(entry);
     }
 

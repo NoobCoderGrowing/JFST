@@ -23,11 +23,11 @@ public static void main(String[] args) {
     long[] outputs = new long[]{10, -1, 8, -6};
     // 短语在加入FST前必须排序
     Arrays.sort(examples);
-    ArrayList<Pair<Long, String[]>> inputs = new ArrayList<>();
+    ArrayList<fstPair<Long, String[]>> inputs = new ArrayList<>();
     for (int i = 0; i < examples.length; i++){
         //在FST中一个节点不一定非要是一个字符
         String[] phrase = str2Array(examples[i]);
-        Pair<Long, String[]> entry = new Pair<>(outputs[i], phrase);
+        fstPair<Long, String[]> entry = new fstPair<>(outputs[i], phrase);
         inputs.add(entry);
     }
 
