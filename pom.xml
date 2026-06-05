@@ -48,7 +48,7 @@
         <connection>scm:git:git://github.com/NoobCoderGrowing/JFST.git</connection>
         <developerConnection>scm:git:ssh://github.com:NoobCoderGrowing/JFST.git</developerConnection>
         <url>https://github.com/NoobCoderGrowing/JFST</url>
-        <tag>v1.0.0</tag>
+        <tag>v1.0.1</tag>
     </scm>
 
     <build>
