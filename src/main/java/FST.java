@@ -78,7 +78,7 @@ public class FST {
         return newNode;
     }
 
-    // phrases are alphabetically ascending, and the output is also numerically ascending
+    // phrases should be sorted alphabetically ascending
     // 1. Put output at first edge
     // 2. If no suffix found or there is new node in between, put additional output at the edge to the first new node
     // 2. if suffix found and there is no new node, put additional output at the edge to the suffix start

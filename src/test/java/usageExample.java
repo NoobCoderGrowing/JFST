@@ -13,7 +13,8 @@ public class usageExample {
     }
 
     public static void main(String[] args) {
-        String[] examples = new String[]{"app", "apple", "applet", "aplet"};
+        // String[] examples = new String[]{"app", "apple", "applet", "aplet"};
+        String[] examples = new String[]{"aplet","app","apple", "applet"};
         long[] outputs = new long[]{10, -1, 8, -6};
         // phrases must be sorted before adding into FST
         Arrays.sort(examples);
@@ -27,13 +28,13 @@ public class usageExample {
 
         FST fst = new FST();
         fst.build(inputs);
-        String[] example1 = str2Array("app");
-        String[] example2 = str2Array("et");
-        System.out.println(fst.fuzzySearchPrefix(example1));
-        System.out.println(fst.fuzzySearchSuffix(example2));
-        System.out.println(fst.search(example1));
-        System.out.println(fst.backSearch(example2));
-        System.out.println(fst.backSearch(example1));
+        String[] app = str2Array("app");
+        String[] et = str2Array("et");
+        System.out.println(fst.fuzzySearchPrefix(app));
+        System.out.println(fst.fuzzySearchSuffix(et));
+        System.out.println(fst.search(app));
+        System.out.println(fst.backSearch(et));
+        System.out.println(fst.backSearch(app));
 
     }
 
