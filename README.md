@@ -19,7 +19,7 @@ FST（Finite state transducer）是一种用于字符串匹配的数据结构，
 <dependency>
     <groupId>io.github.noobcodergrowing</groupId>
     <artifactId>JFST</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 
 ```
