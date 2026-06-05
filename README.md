@@ -12,6 +12,18 @@ FST（Finite state transducer）是一种用于字符串匹配的数据结构，
 
 如果想要了解更多的理论和实现细节，请参考这篇博客 https://burntsushi.net/transducers/
 
+### 快速开始
+
+引入maven依赖
+```
+<dependency>
+    <groupId>io.github.noobcodergrowing</groupId>
+    <artifactId>JFST</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+```
+
 ### 使用案例
 
 ```
@@ -111,6 +123,19 @@ A Java implementation of Finite State Transducer
 FST (Finite state transducer) is a data structure that facilitates string match and produces an output. It functions as a Map and allows reverse and wild card search, and uses much less memory to store entries than a common Map because of the sharing of prefix and suffix.
 
 For theoretical and implementation details, please refer to this blog https://burntsushi.net/transducers/
+
+
+### Quick start
+
+import maven dependency
+```
+<dependency>
+    <groupId>io.github.noobcodergrowing</groupId>
+    <artifactId>JFST</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+```
 
 ### Usage example
 
