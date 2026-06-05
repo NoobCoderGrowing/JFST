@@ -50,6 +50,33 @@ public static void main(String[] args) {
 -1=[a, p, p]
 ```
 
+### 案例内存结构
+
+```mermaid
+flowchart LR
+    ROOT(["root"])
+    A["a"]
+    P1["p"]
+    P2["p"]
+    L1["l"]
+    E1["e"]
+    L2["l"]
+    E2["e"]
+    T["t"]
+    END(["end"])
+    ROOT -->|"10"| A
+    A -->|"0"| P1
+    P1 -->|"0"| P2
+    P1 -->|"-16"| L2
+    P2 -->|"-11"| L1
+    P2 -->|"0"| END
+    L1 -->|"0"| E1
+    E1 -->|"0"| END
+    E1 -->|"9"| T
+    L2 -->|"0"| E2
+    E2 -->|"0"| T
+    T -->|"0"| END
+
 ## 环境配置
 * jdk 1.8+
 * maven 3.8.1+
