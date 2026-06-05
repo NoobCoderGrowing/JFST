@@ -25,7 +25,7 @@ public static String[] str2Array(String str){
     }
 
 public static void main(String[] args) {
-    String[] examples = new String[]{"app", "apple", "applet", "aplet"};
+    String[] examples = new String[]{"aplet","app","apple", "applet"};
     long[] outputs = new long[]{10, -1, 8, -6};
     // 短语在加入 FST 前必须排序
     Arrays.sort(examples);
@@ -124,7 +124,7 @@ public static String[] str2Array(String str){
     }
 
 public static void main(String[] args) {
-    String[] examples = new String[]{"app", "apple", "applet", "aplet"};
+    String[] examples = new String[]{"aplet","app","apple", "applet"};
     long[] outputs = new long[]{10, -1, 8, -6};
     // phrases must be sorted before adding into FST
     Arrays.sort(examples);
