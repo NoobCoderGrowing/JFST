@@ -5,7 +5,7 @@ Finite State Transducer 的Java实现
 ## Introduction to FST
 FST(Finite state transducer) 是一种用于字符串匹配的数据结构，并且在字符串匹配的同时产生一个输出。它的作用类似于一个Map，并且支持倒序搜索和通配符搜索。FST相较于Map而言使用的内存大大减少，因为这种数据结构在存储字符串的过程中支持前缀和后缀的共享。
 
-如果想要了解更多的理论和实现细节，请参考这篇博客 https://burntsushi.net/transducers/。
+如果想要了解更多的理论和实现细节，请参考这篇博客 https://burntsushi.net/transducers/
 
 ## 使用案例
 ```
