@@ -25,8 +25,8 @@ public static String[] str2Array(String str){
     }
 
 public static void main(String[] args) {
-    String[] examples = new String[]{"aplet","app","apple", "applet"};
-    long[] outputs = new long[]{10, -1, 8, -6};
+    String[] examples = new String[]{"aplet","app","apple", "applet","appletlet"};
+    long[] outputs = new long[]{10, -1, 8, -6, -3};
     // 短语在加入 FST 前必须排序
     Arrays.sort(examples);
     ArrayList<fstPair<Long, String[]>> inputs = new ArrayList<>();
@@ -49,8 +49,8 @@ public static void main(String[] args) {
 }
 
 // 打印结果
-[-1=[a, p, p], 8=[a, p, p, l, e], -6=[a, p, p, l, e, t]]
-[-6=[a, p, p, l, e, t], 10=[a, p, l, e, t]]
+[-1=[a, p, p], 8=[a, p, p, l, e], -6=[a, p, p, l, e, t], -3=[a, p, p, l, e, t, l, e, t]]
+[-6=[a, p, p, l, e, t], 10=[a, p, l, e, t], -3=[a, p, p, l, e, t, l, e, t]]
 -1=[a, p, p]
 0=[]
 -1=[a, p, p]
@@ -85,6 +85,7 @@ flowchart LR
     E2 -->|"0"| END
     E2 -->|"-14"| T2
     T2 -->|"0"| END
+    T2 -->|"3"| L1
 
     style ROOT fill:#e8f4fd
     style END fill:#fde8e8
@@ -124,8 +125,8 @@ public static String[] str2Array(String str){
     }
 
 public static void main(String[] args) {
-    String[] examples = new String[]{"aplet","app","apple", "applet"};
-    long[] outputs = new long[]{10, -1, 8, -6};
+    String[] examples = new String[]{"aplet","app","apple", "applet","appletlet"};
+    long[] outputs = new long[]{10, -1, 8, -6, -3};
     // phrases must be sorted before adding into FST
     Arrays.sort(examples);
     ArrayList<fstPair<Long, String[]>> inputs = new ArrayList<>();
@@ -148,8 +149,8 @@ public static void main(String[] args) {
 }
 
 // print result
-[-1=[a, p, p], 8=[a, p, p, l, e], -6=[a, p, p, l, e, t]]
-[-6=[a, p, p, l, e, t], 10=[a, p, l, e, t]]
+[-1=[a, p, p], 8=[a, p, p, l, e], -6=[a, p, p, l, e, t], -3=[a, p, p, l, e, t, l, e, t]]
+[-6=[a, p, p, l, e, t], 10=[a, p, l, e, t], -3=[a, p, p, l, e, t, l, e, t]]
 -1=[a, p, p]
 0=[]
 -1=[a, p, p]
@@ -184,6 +185,7 @@ flowchart LR
     E2 -->|"0"| END
     E2 -->|"-14"| T2
     T2 -->|"0"| END
+    T2 -->|"3"| L1
 
     style ROOT fill:#e8f4fd
     style END fill:#fde8e8

@@ -13,8 +13,8 @@ public class usageExample {
     }
 
     public static void main(String[] args) {
-        String[] examples = new String[]{"aplet","app","apple", "applet"};
-        long[] outputs = new long[]{10, -1, 8, -6};
+        String[] examples = new String[]{"aplet","app","apple", "applet","appletlet"};
+        long[] outputs = new long[]{10, -1, 8, -6, -3};
         // phrases must be sorted before adding into FST
         Arrays.sort(examples);
         ArrayList<fstPair<Long, String[]>> inputs = new ArrayList<>();
@@ -23,7 +23,6 @@ public class usageExample {
             String[] phrase = str2Array(examples[i]);
             fstPair<Long, String[]> entry = new fstPair<>(outputs[i], phrase);
             inputs.add(entry);
-            System.out.println(examples[i] + " " + outputs[i]);
         }
 
         FST fst = new FST();
