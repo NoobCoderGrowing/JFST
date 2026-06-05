@@ -153,7 +153,7 @@ public class FST {
 
 
 
-    public fstPair<Long, ArrayList<fstNode>> searchPrefix(String[] phrase){
+    public fstPair<ArrayList<fstNode>, Long> searchPrefix(String[] phrase){
         ArrayList<fstNode> path = new ArrayList<>();
         long pathOutput = 0;
         fstNode currentNode = root;
@@ -167,10 +167,10 @@ public class FST {
             currentNode = currentNode.getChildren().get(token).getChild();
             path.add(currentNode);
         }
-        return new fstPair<>(pathOutput, path);
+        return new fstPair<>(path, pathOutput);
     }
 
-    public fstPair<Long, ArrayList<fstNode>> search(String[] phrase){
+    public fstPair<ArrayList<fstNode>, Long> search(String[] phrase){
         if(phrase.length==0){
             return null;
         }
@@ -190,26 +190,26 @@ public class FST {
         if(currentNode.getChildren().values().iterator().next().getChild()!=endNode){
             return null;
         }
-        return new fstPair<>(pathOutput, path);
+        return new fstPair<>(path, pathOutput);
     }
 
 
 
-    public List<fstPair<Long, List<fstNode>>> fuzzySearchPrefix(String[] prefix){
-        List<fstPair<Long, List<fstNode>>>  results = new ArrayList<>();
+    public List<fstPair<List<fstNode>, Long>> fuzzySearchPrefix(String[] prefix){
+        List<fstPair<List<fstNode>, Long>>  results = new ArrayList<>();
 
 
-        fstPair<Long, ArrayList<fstNode>> searchRet = searchPrefix(prefix);
+        fstPair<ArrayList<fstNode>, Long> searchRet = searchPrefix(prefix);
         if(searchRet == null){// if no prefix found, return empty list
             return  new ArrayList<>();
         }
-        ArrayList<fstNode> path = searchRet.getValue();
-        long pathValue = searchRet.getKey();
+        ArrayList<fstNode> path = searchRet.getKey();
+        long pathValue = searchRet.getValue();
         collectPrefixPaths(path.get(path.size()-1), results, pathValue, path);
         return results;
     }
 
-    public void searchSuffix(String[] suffix, List<fstPair<Long, List<fstNode>>> results,
+    public void searchSuffix(String[] suffix, List<fstPair<List<fstNode>, Long>> results,
                                                        List<fstNode> path, fstNode node, long output, int index){
 
         if(index==0){ // if suffix path found
@@ -219,7 +219,7 @@ public class FST {
                     fstNode currentNode = edge.getAncestor();
                     ArrayList<fstNode> newPath = new ArrayList<>(path);
                     newPath.add(currentNode);
-                    results.add(new fstPair<>(output + edge.getOutput(), newPath));
+                    results.add(new fstPair<>(newPath, output + edge.getOutput()));
                 }
             }
             return;
@@ -234,7 +234,7 @@ public class FST {
         }
     }
 
-    public void backSearchRecursive(String[] suffix, fstPair<Long, List<fstNode>> ret, List<fstNode> path, fstNode node,
+    public void backSearchRecursive(String[] suffix, fstPair<List<fstNode>, Long> ret, List<fstNode> path, fstNode node,
                                                          long output, int index){
         if(index==0){ // if suffix path found
             if(node.ancestors.containsKey(suffix[0])){
@@ -252,8 +252,8 @@ public class FST {
                     Collections.reverse(newPath);
                     // adding last output of the edge to the root
                     output+=prevEdge.getOutput();
-                    ret.setKey(output);
-                    ret.setValue(newPath);
+                    ret.setKey(newPath);
+                    ret.setValue(output);
                 }
             }
             return;
@@ -269,24 +269,24 @@ public class FST {
 
     }
 
-    public fstPair<Long, List<fstNode>>  backSearch(String[] phrase){
+    public fstPair<List<fstNode>, Long>  backSearch(String[] phrase){
         List<fstNode> path = new ArrayList<>();
-        fstPair<Long, List<fstNode>> ret = new fstPair<Long, List<fstNode>>(0l, new ArrayList<>());
+        fstPair<List<fstNode>, Long> ret = new fstPair<List<fstNode>, Long>(new ArrayList<>(), 0l);
         backSearchRecursive(phrase, ret, path, endNode, 0, phrase.length-1);
         return ret;
     }
 
 
 
-    public List<fstPair<Long, List<fstNode>>> fuzzySearchSuffix(String[] suffix){
-        List<fstPair<Long, List<fstNode>>>  results = new ArrayList<>();
-        List<fstPair<Long, List<fstNode>>>  suffixPaths = new ArrayList<>();
+    public List<fstPair<List<fstNode>, Long>> fuzzySearchSuffix(String[] suffix){
+        List<fstPair<List<fstNode>, Long>>  results = new ArrayList<>();
+        List<fstPair<List<fstNode>, Long>>  suffixPaths = new ArrayList<>();
         List<fstNode> path = new ArrayList<>();
         int index = suffix.length - 1;
         searchSuffix(suffix, suffixPaths , path, endNode,0, index);
 
-        for (fstPair<Long, List<fstNode>> pathPair: suffixPaths){
-            List<fstNode> suffixPath = pathPair.getValue();
+        for (fstPair<List<fstNode>, Long> pathPair: suffixPaths){
+            List<fstNode> suffixPath = pathPair.getKey();
             fstNode suffixStart = suffixPath.get(suffixPath.size()-1);
             collectSuffixPaths(results, pathPair, suffixStart);
         }
@@ -294,11 +294,11 @@ public class FST {
         return results;
     }
 
-    public void collectSuffixPaths(List<fstPair<Long, List<fstNode>>> results,
-                                   fstPair<Long, List<fstNode>> pathPair, fstNode node){
+    public void collectSuffixPaths(List<fstPair<List<fstNode>, Long>> results,
+                                   fstPair<List<fstNode>, Long> pathPair, fstNode node){
         if(node.isRoot()){
-            pathPair.getValue().remove(pathPair.getValue().size()-1);// remove start node
-            Collections.reverse(pathPair.getValue());
+            pathPair.getKey().remove(pathPair.getKey().size()-1);// remove start node
+            Collections.reverse(pathPair.getKey());
             results.add(pathPair);
             return;
         }
@@ -306,20 +306,20 @@ public class FST {
         for (fstEdge edge: ancestors.values()) {
             fstNode ancestor = edge.getAncestor();
             long output = edge.getOutput();
-            List<fstNode> newPath  = new ArrayList<>(pathPair.getValue());
+            List<fstNode> newPath  = new ArrayList<>(pathPair.getKey());
             newPath.add(ancestor);
-            long newOutput = pathPair.getKey() + output;
-            fstPair<Long, List<fstNode>> newPathPair = new fstPair<>(newOutput, newPath);
+            long newOutput = pathPair.getValue() + output;
+            fstPair<List<fstNode>, Long> newPathPair = new fstPair<>(newPath, newOutput);
             collectSuffixPaths(results, newPathPair, ancestor);
         }
     }
 
 
 
-    public void collectPrefixPaths(fstNode startNode, List<fstPair<Long, List<fstNode>>> results, long pathValue, List<fstNode> path){
+    public void collectPrefixPaths(fstNode startNode, List<fstPair<List<fstNode>, Long>> results, long pathValue, List<fstNode> path){
         if(startNode.isEndNode()){
             path.remove(path.size()-1);
-            results.add(new fstPair<>(pathValue, path));
+            results.add(new fstPair<>(path, pathValue));
             return;
         }
         for(fstEdge currentEdge: startNode.getChildren().values()){
@@ -332,9 +332,9 @@ public class FST {
 
     }
 
-    public void build(ArrayList<fstPair<Long, String[]>> input){
-        for (fstPair<Long, String[]> entry: input) {
-            addPhrase(entry.getKey(), entry.getValue());
+    public void build(ArrayList<fstPair<String[], Long>> input){
+        for (fstPair<String[], Long> entry: input) {
+            addPhrase(entry.getValue(), entry.getKey());
         }
         nodeMap.clear();
     }

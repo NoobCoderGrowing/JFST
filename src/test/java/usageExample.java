@@ -17,11 +17,11 @@ public class usageExample {
         long[] outputs = new long[]{10, -1, 8, -6, -3};
         // phrases must be sorted before adding into FST
         Arrays.sort(examples);
-        ArrayList<fstPair<Long, String[]>> inputs = new ArrayList<>();
+        ArrayList<fstPair<String[], Long>> inputs = new ArrayList<>();
         for (int i = 0; i < examples.length; i++){
             //the reason why an entry must be a string list is a node in FST does not have to be a character
             String[] phrase = str2Array(examples[i]);
-            fstPair<Long, String[]> entry = new fstPair<>(outputs[i], phrase);
+            fstPair<String[], Long> entry = new fstPair<>(phrase, outputs[i]);
             inputs.add(entry);
         }
 

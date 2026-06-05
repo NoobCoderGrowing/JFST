@@ -29,11 +29,11 @@ public static void main(String[] args) {
     long[] outputs = new long[]{10, -1, 8, -6, -3};
     // 短语在加入 FST 前必须排序
     Arrays.sort(examples);
-    ArrayList<fstPair<Long, String[]>> inputs = new ArrayList<>();
+    ArrayList<fstPair<String[], Long>> inputs = new ArrayList<>();
     for (int i = 0; i < examples.length; i++){
         // 在 FST 中一个节点不一定非要是一个字符
         String[] phrase = str2Array(examples[i]);
-        fstPair<Long, String[]> entry = new fstPair<>(outputs[i], phrase);
+        fstPair<String[], Long> entry = new fstPair<>(phrase, outputs[i]);
         inputs.add(entry);
     }
 
@@ -49,11 +49,11 @@ public static void main(String[] args) {
 }
 
 // 打印结果
-[-1=[a, p, p], 8=[a, p, p, l, e], -6=[a, p, p, l, e, t], -3=[a, p, p, l, e, t, l, e, t]]
-[-6=[a, p, p, l, e, t], 10=[a, p, l, e, t], -3=[a, p, p, l, e, t, l, e, t]]
--1=[a, p, p]
-0=[]
--1=[a, p, p]
+[[a, p, p]=-1, [a, p, p, l, e]=8, [a, p, p, l, e, t]=-6, [a, p, p, l, e, t, l, e, t]=-3]
+[[a, p, p, l, e, t]=-6, [a, p, l, e, t]=10, [a, p, p, l, e, t, l, e, t]=-3]
+[a, p, p]=-1
+[]=0
+[a, p, p]=-1
 ```
 
 #### 案例内存结构
@@ -129,11 +129,11 @@ public static void main(String[] args) {
     long[] outputs = new long[]{10, -1, 8, -6, -3};
     // phrases must be sorted before adding into FST
     Arrays.sort(examples);
-    ArrayList<fstPair<Long, String[]>> inputs = new ArrayList<>();
+    ArrayList<fstPair<String[], Long>> inputs = new ArrayList<>();
     for (int i = 0; i < examples.length; i++){
         // the reason why an entry must be a string list is a node in FST does not have to be a character
         String[] phrase = str2Array(examples[i]);
-        fstPair<Long, String[]> entry = new fstPair<>(outputs[i], phrase);
+        fstPair<String[], Long> entry = new fstPair<>(phrase, outputs[i]);
         inputs.add(entry);
     }
 
@@ -149,11 +149,11 @@ public static void main(String[] args) {
 }
 
 // print result
-[-1=[a, p, p], 8=[a, p, p, l, e], -6=[a, p, p, l, e, t], -3=[a, p, p, l, e, t, l, e, t]]
-[-6=[a, p, p, l, e, t], 10=[a, p, l, e, t], -3=[a, p, p, l, e, t, l, e, t]]
--1=[a, p, p]
-0=[]
--1=[a, p, p]
+[[a, p, p]=-1, [a, p, p, l, e]=8, [a, p, p, l, e, t]=-6, [a, p, p, l, e, t, l, e, t]=-3]
+[[a, p, p, l, e, t]=-6, [a, p, l, e, t]=10, [a, p, p, l, e, t, l, e, t]=-3]
+[a, p, p]=-1
+[]=0
+[a, p, p]=-1
 ```
 
 #### Example memory layout
